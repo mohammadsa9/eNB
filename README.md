@@ -228,3 +228,51 @@ Options:
                         code>-<m-tmsi>
   --mme-2=MME_2_IP      2nd MME IP Address
   ```
+
+## eNB eCLI – Command Line Interface
+
+The eCLI.py script is a new addition to the eNB emulator, allowing users to interact with the eNB and run commands directly from the shell without using the graphical menu. This is useful for automation and scripting.
+
+### Usage example:
+
+```
+#!/bin/bash
+
+# ===============================
+# eNB eCLI Usage Example
+# ===============================
+
+# Start eNB with IMSI and Ki/OPC authentication
+python3 eCLI.py \
+  -i 192.0.2.50 \
+  -m 192.0.2.2 \
+  -I 310150123456789 \
+  -K a1b2c3d4e5f60718293a4b5c6d7e8f90 \
+  -C f0e1d2c3b4a5968776655443322110ff \
+  -o 310150
+
+# Execute option 15
+python3 eCLI.py --command 15
+sleep 3
+
+# Execute option 20
+python3 eCLI.py --command 20
+sleep 3
+
+# Execute option 24
+python3 eCLI.py --command 24
+sleep 3
+
+# Execute option 50
+python3 eCLI.py --command 50
+sleep 3
+
+# Execute stop at end
+python3 eCLI.py --stop
+```
+
+### TODO
+
+- Manage multiple instances using IP namespaces.
+- Implement handling of command responses instead of one-way command sending to enable better scripting and automation.
+- Provide improved feedback messages in the added script for clearer progress and status reporting.
